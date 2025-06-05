@@ -3,93 +3,352 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>John F. Martin - Research Website</title>
+  <title>John F. Martin - Economics Researcher</title>
+  <link rel="icon" href="favicon.ico">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-    header { background: #2c3e50; color: white; padding: 1rem; text-align: center; }
-    nav { background: #34495e; display: flex; justify-content: center; }
+    :root {
+      --primary: #2c3e50;
+      --secondary: #34495e;
+      --accent: #1abc9c;
+      --text: #333;
+      --light: #f8f9fa;
+    }
+    
+    body { 
+      font-family: 'Arial', sans-serif; 
+      margin: 0; 
+      padding: 0; 
+      line-height: 1.6;
+      color: var(--text);
+    }
+    
+    header { 
+      background: var(--primary); 
+      color: white; 
+      padding: 1.5rem; 
+      text-align: center; 
+    }
+    
+    nav { 
+      background: var(--secondary); 
+      display: flex; 
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
     nav a {
       color: white;
-      padding: 1rem;
+      padding: 1rem 1.5rem;
       text-decoration: none;
-      display: inline-block;
+      transition: all 0.3s ease;
+      position: relative;
     }
-    nav a:hover { background: #1abc9c; }
-    section { padding: 2rem; display: none; }
-    section.active { display: block; }
-    .home-content { display: flex; gap: 2rem; align-items: center; }
-    .contact-info { flex: 1; }
-    img.headshot { max-width: 250px; border-radius: 125px; }
-    .cv-frame { width: 100%; height: 800px; border: none; }
-    .download-link { margin-top: 1rem; display: inline-block; }
+    
+    nav a:hover { 
+      background: var(--accent); 
+    }
+    
+    nav a.active {
+      font-weight: bold;
+    }
+    
+    nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 25%;
+      width: 50%;
+      height: 3px;
+      background: var(--accent);
+    }
+    
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    section { 
+      padding: 2rem 0; 
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    section.active { 
+      display: block; 
+    }
+    
+    .home-content { 
+      display: flex; 
+      gap: 3rem; 
+      align-items: flex-start;
+      margin-top: 1.5rem;
+    }
+    
+    .contact-info { 
+      flex: 1; 
+    }
+    
+    img.headshot { 
+      max-width: 250px; 
+      border-radius: 125px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .cv-container {
+      margin-top: 2rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    
+    .cv-frame { 
+      width: 100%; 
+      height: 800px; 
+      border: none;
+    }
+    
+    .download-link { 
+      display: inline-block;
+      margin: 1rem 0;
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+    
+    .download-link:hover {
+      background: var(--accent);
+    }
+    
+    .research-highlight {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-left: 4px solid var(--accent);
+      margin: 2rem 0;
+    }
+    
+    details {
+      margin: 1rem 0;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 4px;
+    }
+    
+    summary {
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .skills-container {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+    }
+    
+    .skills-column {
+      flex: 1;
+      min-width: 200px;
+    }
+    
+    .presentation-item {
+      margin-bottom: 1rem;
+    }
+    
+    .presentation-item span {
+      display: block;
+      color: #666;
+      font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+      .home-content {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      img.headshot {
+        margin-bottom: 1.5rem;
+      }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>John F. Martin</h1>
-    <p>Economist | Data Scientist | Mathematician</p>
+    <p>Prospective Ph.D. Candidate in Applied Microeconomics & Public Policy</p>
   </header>
 
   <nav>
-    <a href="#" onclick="showSection('home')">Home</a>
+    <a href="#" onclick="showSection('home')" class="active">Home</a>
     <a href="#" onclick="showSection('research')">Research</a>
     <a href="#" onclick="showSection('cv')">CV</a>
+    <a href="#" onclick="showSection('teaching')">Teaching</a>
   </nav>
 
-  <section id="home" class="active">
-    <h2>About Me</h2>
-    <div class="home-content">
-      <div class="contact-info">
-        <p><strong>Email:</strong> martin.john105@gmail.com</p>
-        <p><strong>Phone:</strong> (913) 972-1792</p>
-        <p><strong>GitHub:</strong> <a href="https://github.com/jfmt3v" target="_blank">jfmt3v</a></p>
-        <p><strong>LinkedIn:</strong> <a href="www.linkedin.com/in/john-f-martin85" target="_blank">john-martin-85</a></p>
-        <p>
-          I am a recent graduate from the University of Missouri, graduating with Bachelors of Science in economics, in mathematics, and in statistics. My goal is to pursue a Ph.D. in economics and empirically study how policy decisions affect Americans. Currently, I am a predoctoral research assistant with Dr. Brittany Street, Dr. Felipe Gonclaves, and Dr. Emily Weisburst studying how railroads, highways, and redline borders in the 19th and 20th century affect outcomes today. 
-        </p>
+  <main>
+    <section id="home" class="active">
+      <div class="home-content">
+        <div class="contact-info">
+          <h2>About Me</h2>
+          <p>
+            I am a recent graduate from the University of Missouri with B.S. degrees in Economics, Mathematics, and Statistics. 
+            Currently, I work as a predoctoral research assistant studying how historical infrastructure and policies 
+            (railroads, highways, redlining) affect contemporary economic outcomes. My research focuses on applied microeconomics, 
+            particularly health economics, public economics, and labor markets, using causal inference methods to evaluate policy impacts.
+          </p>
+          
+          <div class="research-highlight">
+            <h3>Featured Research</h3>
+            <p>
+              <a href="medicaid_expansion.pdf" target="_blank">The Effects of Medicaid Expansion on Uninsured Rates</a>: 
+              Uses staggered difference-in-differences to show a 34.9% reduction in uninsured rates following Medicaid expansion, 
+              with significant shifts in emergency department payer mix.
+            </p>
+          </div>
+          
+          <h3>Contact</h3>
+          <p><strong>Email:</strong> martin.john105@gmail.com</p>
+          <p><strong>Phone:</strong> (913) 972-1792</p>
+          <p><strong>GitHub:</strong> <a href="https://github.com/jfmt3v" target="_blank">jfmt3v</a></p>
+          <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/john-f-martin85" target="_blank">john-f-martin85</a></p>
+          <p><strong>Google Scholar:</strong> <a href="#" target="_blank">Coming Soon</a></p>
+          <p><strong>ORCID:</strong> <a href="https://orcid.org/0009-0006-4501-1338" target="_blank">00009-0006-4501-1338</a></p>
+        </div>
+        <img src="headshot.jpg" alt="John F. Martin, Economist" class="headshot">
       </div>
-      <img src="headshot.jpg" alt="John F. Martin Headshot" class="headshot">
-    </div>
-  </section>
+    </section>
 
-  <section id="research">
-    <h2>Research Interests</h2>
-    <ul>
-      <li>Health Economics</li>
-      <li>Public Economics</li>
-      <li>Labor Markets</li>
-      <li>Causal Inference</li>
-    </ul>
+    <section id="research">
+      <h2>Research Interests</h2>
+      <ul>
+        <li>Health Economics (Insurance markets, healthcare access)</li>
+        <li>Public Economics (Safety net programs, taxation)</li>
+        <li>Labor Economics (Wage determination, employment effects)</li>
+        <li>Causal Inference (DiD, RDD, IV, machine learning applications)</li>
+      </ul>
 
-    <h2>Working Papers</h2>
-<div>
-  <details>
-    <summary><strong>The Effects of Medicaid Expansion on Uninsured Rates</strong> [<a href="medicaid_expansion.pdf" target="_blank">paper</a>]</summary>
-    <p>Access to healthcare is an integral factor in household financial decision-making. Medicaid expansion, legislation that each state may choose to opt into, attempts to alleviate this household burden by expanding guaranteed medical coverage to all citizens in a state below 138% of the Federal Poverty Rate (FPR), rather than just for low-income children, pregnant women, and disabled adults. The legislation is targeted at lowering the uninsured rate in low-income communities, but it is currently unclear if it is effective in doing so. My research leverages Medicaid expansion to study how expanded healthcare access affects outcomes such as insurance status, emergency care use, and Medicaid-related costs in a state. I exploit within- and across-state variation through a staggered difference-in-differences framework which compares these outcomes in states that adopt to those that do not. I find that expanding Medicaid causes a 34.9% decrease in the uninsured rate and a 2.5% decrease in the private health insurance enrollment rate. While this result does not say anything about cost-related tradeoffs, it does indicate that Medicaid expansion effectively gets coverage to lower-income communities. Additionally, I find while total emergency department (ED) visits remain unchanged, visits by Medicaid payers increase by 43.5% and decrease by 56.5% for self-pay/no-charge payers. Medicaid-related costs increase by 27%. This work shows that Medicaid expansion is effective in increasing healthcare coverage for low-income individuals. While Medicaid-related costs increase, financial burden shifts from household to Medicaid for emergency care, which has implications for households, hospital financial stability, and government expenditures.</p>
-  </details>
-</div>
+      <h2>Working Papers</h2>
+      <div>
+        <details>
+          <summary>
+            <strong>The Effects of Medicaid Expansion on Uninsured Rates</strong> 
+            [<a href="medicaid_expansion.pdf" target="_blank">PDF</a>]
+            [<a href="https://github.com/jfmt3v/john-f-martin/blob/main/CodingSample.do" target="_blank">Code</a>]
+          </summary>
+          <p><strong>Abstract:</strong> Access to healthcare is an integral factor in household financial decision-making. Medicaid expansion, legislation that each state may choose to opt into, attempts to alleviate this household burden by expanding guaranteed medical coverage to all citizens in a state below 138% of the Federal Poverty Rate (FPR). I exploit within- and across-state variation through a staggered difference-in-differences framework comparing outcomes in expansion versus non-expansion states. Results indicate that Medicaid expansion causes a 34.9% decrease in the uninsured rate and a 2.5% decrease in private health insurance enrollment. While total emergency department visits remain unchanged, visits by Medicaid payers increase by 43.5% while self-pay/no-charge visits decrease by 56.5%, suggesting a shift in financial burden from households to Medicaid programs. These findings have implications for the design of healthcare safety net programs and state-level policy decisions regarding Medicaid expansion.</p>
+        </details>
+      </div>
 
-    <h2>Presentations</h2>
-    <ul>
-      <li>Midwest Economics Association Conference (2025); Presentation; Kansas City, MO</li>
-      <li>Datafest (2025); Presentation; Columbia, MO; Awarded Best Statistical Analysis Runner-Up</li>
-      <li>CAFNR Mizzou Fall Research Day Symposium (2024); Poster; Columbia, MO</li>
-      <li>SMU "Data Science for Social Good" 3-Minute Thesis (2024); Presentation; Dallas, TX</li>
-      <li>Mizzou Research Week (2024); Poster; Columbia, MO</li>
-      <li>McNair Scholars Conference (2024); Presentation and Poster; Columbia, MO</li>
-    </ul>
-  </section>
+      <h2>Work in Progress</h2>
+      <ul>
+        <li>"Historical Transportation Infrastructure and Modern Economic Mobility" (with Street, Gonclaves & Weisburst)</li>
+      </ul>
 
-  <section id="cv">
-    <h2>Curriculum Vitae</h2>
-    <a class="download-link" href="cv.pdf" target="_blank">Download CV (PDF)</a>
-    <iframe class="cv-frame" src="cv.pdf"></iframe>
-  </section>
+      <h2>Technical Skills</h2>
+      <div class="skills-container">
+        <div class="skills-column">
+          <h3>Languages</h3>
+          <ul>
+            <li>Stata</li>
+            <li>RStudio</li>
+            <li>Python</li>
+            <li>LaTeX</li>
+            <li>HTML</li>
+          </ul>
+        </div>
+        <div class="skills-column">
+          <h3>Methods</h3>
+          <ul>
+            <li>Causal Inference (DiD, RDD, IV)</li>
+            <li>Machine Learning</li>
+            <li>Spatial Econometrics</li>
+          </ul>
+        </div>
+        <div class="skills-column">
+          <h3>Tools</h3>
+          <ul>
+            <li>Git/GitHub</li>
+            <li>GIS (ArcGIS, QGIS)</li>
+            <li>Visual Studio Code</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2>Presentations</h2>
+      <div class="presentation-item">
+        <strong>Midwest Economics Association Conference (March 2025)</strong>
+        <span>Kansas City, MO | Presentation: "Effects of Medicaid Expansion on Uninsured Rates"</span>
+      </div>
+      <div class="presentation-item">
+        <strong>Datafest (April 2025)</strong>
+        <span>Columbia, MO | Awarded Best Statistical Analysis Runner-Up</span>
+      </div>
+      <div class="presentation-item">
+        <strong>TRIO McNair Scholars Conference (May 2024)</strong>
+        <span>Columbia, MO | Poster Presentation</span>
+      </div>
+    </section>
+
+    <section id="cv">
+      <h2>Curriculum Vitae</h2>
+      <p>Last updated: June 2025</p>
+      <a class="download-link" href="cv.pdf" target="_blank">Download Full CV (PDF)</a>
+      
+      <div class="cv-container">
+        <iframe class="cv-frame" src="cv.pdf" title="John Martin's Curriculum Vitae"></iframe>
+      </div>
+    </section>
+
+    <section id="teaching">
+      <h2>Teaching Experience</h2>
+      <h3>University of Missouri</h3>
+      <ul>
+        <li>
+          <strong>Peer Learning Assistant - Principles of Macroeconomics (ECONOM 1014)</strong>
+          <span>Fall 2023-Spring 2025 | Attended lectures and answered questions, graded discussion posts, held office hours, and proctored exams</span>
+        </li>
+        <li>
+          <strong>Freelance Mathematics Tutor - Courses ranging from Algebra II to Real Analysis</strong>
+          <span>Fall 2021-Spring 2025 | Tutored over 15 students on coursework and ACT prep</span>
+        </li>
+      </ul>
+      
+      <h3>Workshops</h3>
+      <ul>
+        <li>"The Don'ts and Do's of Data Visualization" - Workshop on Data Visualization to Non-Data Science Researchers (December 2024)</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer style="text-align: center; padding: 1.5rem; background: #f8f9fa; margin-top: 2rem;">
+    <p>&copy; 2025 John F. Martin | Designed for academic purposes</p>
+  </footer>
 
   <script>
     function showSection(id) {
-      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      // Update active navigation
+      document.querySelectorAll('nav a').forEach(link => {
+        link.classList.remove('active');
+      });
+      document.querySelector(`nav a[href="#"][onclick="showSection('${id}')"]`).classList.add('active');
+      
+      // Update active section
+      document.querySelectorAll('section').forEach(sec => {
+        sec.classList.remove('active');
+      });
       document.getElementById(id).classList.add('active');
+      
+      // Scroll to top
+      window.scrollTo(0, 0);
     }
   </script>
 </body>
