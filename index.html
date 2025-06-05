@@ -157,6 +157,28 @@
     .presentation-item {
       margin-bottom: 1rem;
     }
+
+    .teaching-item {
+      margin-bottom: 2rem;
+    }
+
+    .teaching-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .teaching-list li {
+      margin-bottom: 1.5rem;
+      padding-left: 1rem;
+      border-left: 3px solid var(--accent);
+    }
+
+    .teaching-details {
+      margin-top: 0.5rem;
+      color: #555;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
     
     .presentation-item span {
       display: block;
@@ -293,7 +315,7 @@
         <span>Columbia, MO | Awarded Best Statistical Analysis Runner-Up</span>
       </div>
       <div class="presentation-item">
-        <strong>University of Missouri Economics ALumni Board (November 2025)</strong>
+        <strong>University of Missouri Economics Alumni Board (November 2025)</strong>
         <span>Columbia, MO | Chosen to Represent Excellence in Undergraduate Economic Research to Prominent Alumni</span>
       </div>
       <div class="presentation-item">
@@ -312,30 +334,37 @@
       </div>
     </section>
 
-    <section id="teaching">
-      <h2>Teaching Experience</h2>
-      <h3>University of Missouri</h3>
-      <ul>
-        <li>
-          <strong>Peer Learning Assistant - Principles of Macroeconomics (ECONOM 1014)</strong>
-          <span>Fall 2023-Spring 2025 | Attended lectures and answered questions, graded discussion posts, held office hours, and proctored exams</span>
-        </li>
-        <li>
-          <strong>Freelance Mathematics Tutor - Courses ranging from Algebra II to Real Analysis</strong>
-          <span>Fall 2021-Spring 2025 | Tutored over 15 students on coursework and ACT prep</span>
-        </li>
-      </ul>
-      
-      <h3>Workshops</h3>
-      <ul>
-        <li>"The Don'ts and Do's of Data Visualization" - Workshop on Data Visualization to Non-Data Science Researchers (December 2024)</li>
-      </ul>
-    </section>
-  </main>
+<section id="teaching">
+  <h2>Teaching Experience</h2>
+  
+  <div class="teaching-item">
+    <h3>University of Missouri</h3>
+    <ul class="teaching-list">
+      <li>
+        <strong>Peer Learning Assistant - Principles of Macroeconomics (ECONOM 1014)</strong>
+        <div class="teaching-details">Fall 2023-Spring 2025 | Attended lectures and answered questions, graded discussion posts, held office hours, and proctored exams</div>
+      </li>
+      <li>
+        <strong>Freelance Mathematics Tutor - Courses ranging from Algebra II to Real Analysis</strong>
+        <div class="teaching-details">Fall 2021-Spring 2025 | Tutored over 15 students on coursework and ACT prep</div>
+      </li>
+    </ul>
+  </div>
 
-  <footer style="text-align: center; padding: 1.5rem; background: #f8f9fa; margin-top: 2rem;">
-    <p>&copy; 2025 John F. Martin | Designed for academic purposes</p>
-  </footer>
+  <div class="teaching-item">
+    <h3>Workshops</h3>
+    <ul class="teaching-list">
+      <li>
+        <strong>The Don'ts and Do's of Data Visualization</strong>
+        <div class="teaching-details">Workshop on Data Visualization to Non-Data Science Researchers (December 2024)</div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<footer style="text-align: center; padding: 1.5rem; background: #f8f9fa; margin-top: 2rem;">
+  <p>&copy; 2025 John F. Martin</p>
+</footer>
 
   <script>
     function showSection(id) {
