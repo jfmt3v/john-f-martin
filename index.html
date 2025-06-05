@@ -17,7 +17,9 @@
     nav a:hover { background: #1abc9c; }
     section { padding: 2rem; display: none; }
     section.active { display: block; }
-    img.headshot { max-width: 150px; border-radius: 75px; margin-bottom: 1rem; }
+    .home-content { display: flex; gap: 2rem; align-items: center; }
+    .contact-info { flex: 1; }
+    img.headshot { max-width: 250px; border-radius: 125px; }
     .cv-frame { width: 100%; height: 800px; border: none; }
     .download-link { margin-top: 1rem; display: inline-block; }
   </style>
@@ -25,7 +27,7 @@
 <body>
   <header>
     <h1>John F. Martin</h1>
-    <p>Applied Microeconomics | Public Policy | Causal Inference</p>
+    <p>Applied Microeconomist | Predoc | Causal Inference</p>
   </header>
 
   <nav>
@@ -35,14 +37,18 @@
   </nav>
 
   <section id="home" class="active">
-    <h2>About Me</h2>
-    <img src="headshot.jpg" alt="John F. Martin Headshot" class="headshot">
-    <p>Email: martin.john105@email.com</p>
-    <p>GitHub: <a href="https://github.com/jfmt3v" target="_blank">jfmt3v</a></p>
-    <p>LinkedIn: <a href="www.linkedin.com/in/john-martin-4a14b3246" target="_blank">john-martin-4a14b3246</a></p>
-    <p>
-      I am a researcher in applied microeconomics, currently working as a predoctoral research assistant. My interests lie in labor, health, and public economics, with a focus on empirical, rigorous policy research. 
-    </p>
+    <h2>Welcome</h2>
+    <div class="home-content">
+      <div class="contact-info">
+        <p><strong>Email:</strong> john.f.martin@email.com</p>
+        <p><strong>GitHub:</strong> <a href="https://github.com/yourusername" target="_blank">yourusername</a></p>
+        <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/yourprofile" target="_blank">yourprofile</a></p>
+        <p>
+          I am a researcher in applied microeconomics, currently working as a predoctoral research assistant. My interests lie in labor, health, and public economics, with a focus on rigorous causal inference and policy-relevant questions.
+        </p>
+      </div>
+      <img src="headshot.jpg" alt="John F. Martin Headshot" class="headshot">
+    </div>
   </section>
 
   <section id="research">
