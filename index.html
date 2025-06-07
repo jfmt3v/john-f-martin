@@ -3,30 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="John F. Martin - Economics Researcher specializing in Applied Microeconomics & Public Policy">
+  <meta name="keywords" content="economics, public policy, health economics, labor economics, causal inference">
+  <meta name="author" content="John F. Martin">
   <title>John F. Martin - Economics Researcher</title>
   <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #2c3e50;
+      --primary-light: #3a516e;
       --secondary: #34495e;
       --accent: #1abc9c;
+      --accent-dark: #16a085;
       --text: #333;
+      --text-light: #555;
       --light: #f8f9fa;
+      --lighter: #fdfdfd;
+      --shadow: 0 2px 10px rgba(0,0,0,0.1);
+      --radius: 6px;
     }
     
     body { 
-      font-family: 'Arial', sans-serif; 
+      font-family: 'Lato', sans-serif;
       margin: 0; 
-      padding: 0; 
-      line-height: 1.6;
+      padding: 0;
+      line-height: 1.7;
       color: var(--text);
+      background-color: var(--lighter);
     }
     
     header { 
-      background: var(--primary); 
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
       color: white; 
-      padding: 1.5rem; 
-      text-align: center; 
+      padding: 2rem 1.5rem; 
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow);
+    }
+    
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+    
+    h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+    
+    h2 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-top: 0;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.5rem;
+      display: inline-block;
+    }
+    
+    h3 {
+      font-size: 1.4rem;
+      color: var(--secondary);
     }
     
     nav { 
@@ -34,14 +75,20 @@
       display: flex; 
       justify-content: center;
       flex-wrap: wrap;
+      position: sticky;
+      top: 96px;
+      z-index: 99;
+      box-shadow: var(--shadow);
     }
     
     nav a {
       color: white;
-      padding: 1rem 1.5rem;
+      padding: 1rem 1.8rem;
       text-decoration: none;
       transition: all 0.3s ease;
       position: relative;
+      font-weight: 400;
+      letter-spacing: 0.5px;
     }
     
     nav a:hover { 
@@ -49,7 +96,7 @@
     }
     
     nav a.active {
-      font-weight: bold;
+      font-weight: 700;
     }
     
     nav a.active::after {
@@ -65,7 +112,8 @@
     main {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 1rem;
+      padding: 2rem 1.5rem;
+      min-height: calc(100vh - 300px);
     }
     
     section { 
@@ -92,14 +140,20 @@
     img.headshot { 
       max-width: 250px; 
       border-radius: 125px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+    }
+    
+    img.headshot:hover {
+      transform: scale(1.03);
     }
     
     .cv-container {
       margin-top: 2rem;
       border: 1px solid #ddd;
-      border-radius: 5px;
+      border-radius: var(--radius);
       overflow: hidden;
+      box-shadow: var(--shadow);
     }
     
     .cv-frame { 
@@ -111,55 +165,109 @@
     .download-link { 
       display: inline-block;
       margin: 1rem 0;
-      padding: 0.5rem 1rem;
+      padding: 0.7rem 1.5rem;
       background: var(--primary);
       color: white;
       text-decoration: none;
-      border-radius: 4px;
-      transition: background 0.3s;
+      border-radius: var(--radius);
+      transition: all 0.3s;
+      font-weight: 500;
+      box-shadow: var(--shadow);
     }
     
     .download-link:hover {
       background: var(--accent);
+      transform: translateY(-2px);
     }
     
     .research-highlight {
-      background: #f8f9fa;
-      padding: 1.5rem;
+      background: var(--light);
+      padding: 1.8rem;
       border-left: 4px solid var(--accent);
-      margin: 2rem 0;
+      margin: 2.5rem 0;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
     }
     
     details {
-      margin: 1rem 0;
-      padding: 1rem;
-      background: #f8f9fa;
-      border-radius: 4px;
+      margin: 1.5rem 0;
+      padding: 1.5rem;
+      background: var(--light);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+    
+    details:hover {
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    details[open] {
+      background: white;
     }
     
     summary {
       font-weight: bold;
       cursor: pointer;
+      font-size: 1.1rem;
+      color: var(--primary);
+    }
+    
+    summary:hover {
+      color: var(--accent-dark);
     }
     
     .skills-container {
       display: flex;
       gap: 2rem;
       flex-wrap: wrap;
-      margin: 1.5rem 0;
+      margin: 2rem 0;
     }
     
     .skills-column {
       flex: 1;
       min-width: 200px;
+      background: var(--light);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    
+    .skills-column h3 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+    
+    .skills-column ul {
+      padding-left: 1.2rem;
+    }
+    
+    .skills-column li {
+      margin-bottom: 0.7rem;
+      position: relative;
+    }
+    
+    .skills-column li::before {
+      content: "▹";
+      position: absolute;
+      left: -1rem;
+      color: var(--accent);
     }
     
     .presentation-item {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      padding: 1.2rem;
+      background: var(--light);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .presentation-item:hover {
+      transform: translateX(5px);
     }
 
     .teaching-item {
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
 
     .teaching-list {
@@ -168,38 +276,125 @@
     }
 
     .teaching-list li {
-      margin-bottom: 1.5rem;
-      padding-left: 1rem;
+      margin-bottom: 1.8rem;
+      padding-left: 1.2rem;
       border-left: 3px solid var(--accent);
+      transition: all 0.3s ease;
+    }
+
+    .teaching-list li:hover {
+      border-left-width: 5px;
+      padding-left: 1.5rem;
     }
 
     .teaching-details {
-      margin-top: 0.5rem;
-      color: #555;
-      line-height: 1.5;
+      margin-top: 0.7rem;
+      color: var(--text-light);
+      line-height: 1.6;
       font-size: 0.95rem;
     }
     
     .presentation-item span {
       display: block;
-      color: #666;
-      font-size: 0.9rem;
+      color: var(--text-light);
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+    }
+    
+    .pub-status {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-left: 0.8rem;
+      vertical-align: middle;
+    }
+    
+    .pub-status.working {
+      background: #f39c12;
+      color: white;
+    }
+    
+    .pub-status.published {
+      background: #2ecc71;
+      color: white;
+    }
+    
+    .pub-status.submitted {
+      background: #3498db;
+      color: white;
+    }
+    
+    footer {
+      text-align: center; 
+      padding: 2rem; 
+      background: var(--primary);
+      color: white;
+      margin-top: 3rem;
+    }
+    
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
     }
     
     @media (max-width: 768px) {
+      header {
+        padding: 1.5rem 1rem;
+        position: static;
+      }
+      
+      nav {
+        position: static;
+      }
+      
       .home-content {
         flex-direction: column;
         align-items: center;
       }
       
       img.headshot {
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      
+      .skills-column {
+        min-width: 100%;
+      }
+      
+      .cv-frame {
+        height: 600px;
       }
     }
     
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Smooth scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* PDF fallback styling */
+    .pdf-fallback {
+      display: none;
+      padding: 1.5rem;
+      background: var(--light);
+      border-radius: var(--radius);
+      margin-top: 1rem;
+    }
+    
+    @media (max-width: 600px) {
+      nav a {
+        padding: 1rem;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
@@ -210,10 +405,10 @@
   </header>
 
   <nav>
-    <a href="#" onclick="showSection('home')" class="active">Home</a>
-    <a href="#" onclick="showSection('research')">Research</a>
-    <a href="#" onclick="showSection('cv')">CV</a>
-    <a href="#" onclick="showSection('teaching')">Teaching</a>
+    <a href="#home" onclick="showSection('home')" class="active">Home</a>
+    <a href="#research" onclick="showSection('research')">Research</a>
+    <a href="#cv" onclick="showSection('cv')">CV</a>
+    <a href="#teaching" onclick="showSection('teaching')">Teaching</a>
   </nav>
 
   <main>
@@ -235,15 +430,16 @@
               Uses staggered difference-in-differences to show a 34.9% reduction in uninsured rates following Medicaid expansion, 
               with significant shifts in emergency department payer mix.
             </p>
+            <a href="medicaid_expansion.pdf" class="download-link" target="_blank">Read Full Paper</a>
           </div>
           
-          <h3>Contact</h3>
-          <p><strong>Email:</strong> martin.john105@gmail.com</p>
-          <p><strong>Phone:</strong> (913) 972-1792</p>
-          <p><strong>GitHub:</strong> <a href="https://github.com/jfmt3v" target="_blank">jfmt3v</a></p>
-          <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/john-f-martin85" target="_blank">john-f-martin85</a></p>
-          <p><strong>Google Scholar:</strong> <a href="#" target="_blank">Coming Soon</a></p>
-          <p><strong>ORCID:</strong> <a href="https://orcid.org/0009-0006-4501-1338" target="_blank">00009-0006-4501-1338</a></p>
+          <h3>Contact Information</h3>
+          <p><strong>Email:</strong> <a href="mailto:martin.john105@gmail.com">martin.john105@gmail.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:9139721792">(913) 972-1792</a></p>
+          <p><strong>GitHub:</strong> <a href="https://github.com/jfmt3v" target="_blank" rel="noopener">github.com/jfmt3v</a></p>
+          <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/john-f-martin85" target="_blank" rel="noopener">linkedin.com/in/john-f-martin85</a></p>
+          <p><strong>Google Scholar:</strong> <a href="#" target="_blank" rel="noopener">Coming Soon</a></p>
+          <p><strong>ORCID:</strong> <a href="https://orcid.org/0009-0006-4501-1338" target="_blank" rel="noopener">0009-0006-4501-1338</a></p>
         </div>
         <img src="headshot.jpg" alt="John F. Martin, Economist" class="headshot">
       </div>
@@ -252,75 +448,87 @@
     <section id="research">
       <h2>Research Interests</h2>
       <ul>
-        <li>Health Economics (Insurance markets, healthcare access)</li>
-        <li>Public Economics (Safety net programs, taxation)</li>
-        <li>Labor Economics (Wage determination, employment effects)</li>
+        <li>Health Economics (Insurance markets, healthcare access, Medicaid/Medicare)</li>
+        <li>Public Economics (Safety net programs, taxation, policy evaluation)</li>
+        <li>Labor Economics (Wage determination, employment effects, human capital)</li>
         <li>Causal Inference (DiD, RDD, IV, machine learning applications)</li>
+        <li>Spatial Economics (Place-based policies, urban/rural disparities)</li>
       </ul>
 
       <h2>Working Papers</h2>
       <div>
-        <details>
+        <details open>
           <summary>
             <strong>The Effects of Medicaid Expansion on Uninsured Rates</strong> 
-            [<a href="medicaid_expansion.pdf" target="_blank">PDF</a>]
-            [<a href="https://github.com/jfmt3v/john-f-martin/blob/main/CodingSample.do" target="_blank">Code</a>]
+            <span class="pub-status working">Working Paper</span>
+            <div class="paper-links">
+              [<a href="medicaid_expansion.pdf" target="_blank" rel="noopener">PDF</a>]
+              [<a href="https://github.com/jfmt3v/john-f-martin/blob/main/CodingSample.do" target="_blank" rel="noopener">Code</a>]
+            </div>
           </summary>
           <p><strong>Abstract:</strong> Access to healthcare is an integral factor in household financial decision-making. Medicaid expansion, legislation that each state may choose to opt into, attempts to alleviate this household burden by expanding guaranteed medical coverage to all citizens in a state below 138% of the Federal Poverty Rate (FPR). I exploit within- and across-state variation through a staggered difference-in-differences framework comparing outcomes in expansion versus non-expansion states. Results indicate that Medicaid expansion causes a 34.9% decrease in the uninsured rate and a 2.5% decrease in private health insurance enrollment. While total emergency department visits remain unchanged, visits by Medicaid payers increase by 43.5% while self-pay/no-charge visits decrease by 56.5%, suggesting a shift in financial burden from households to Medicaid programs. These findings have implications for the design of healthcare safety net programs and state-level policy decisions regarding Medicaid expansion.</p>
+          <p><strong>JEL Codes:</strong> I13, I18, H75</p>
         </details>
       </div>
 
       <h2>Work in Progress</h2>
       <ul>
-        <li>"Historical Transportation Infrastructure and Modern Economic Mobility" (with Street, Gonclaves & Weisburst)</li>
+        <li>
+          <strong>"Historical Transportation Infrastructure and Modern Economic Mobility"</strong> (with Street, Gonclaves & Weisburst)
+          <span class="pub-status working">Data Analysis Stage</span>
+        </li>
       </ul>
 
       <h2>Technical & Research Skills</h2>
-<div class="skills-container">
-  <!-- Column 1: Languages -->
-  <div class="skills-column">
-    <h3>Programming</h3>
-    <ul>
-      <li>Stata</li>
-      <li>RStudio</li>
-      <li>Python</li>
-      <li>LaTeX</li>
-      <li>HTML</li>
-    </ul>
-  </div>
-  
-  <!-- Column 2: Methods -->
-  <div class="skills-column">
-    <h3>Methods</h3>
-    <ul>
-      <li>Causal Inference (DiD, RDD, IV)</li>
-      <li>Machine Learning</li>
-      <li>Spatial Econometrics</li>
-    </ul>
-  </div>
-  
-  <!-- Column 3: Tools -->
-  <div class="skills-column">
-    <h3>Tools</h3>
-    <ul>
-      <li>Git/GitHub</li>
-      <li>GIS (ArcGIS, QGIS)</li>
-      <li>Visual Studio Code</li>
-    </ul>
-  </div>
-  
-  <!-- New Column 4: Research Skills -->
-  <div class="skills-column">
-    <h3>Research Competencies</h3>
-    <ul>
-      <li>Technical Documentation</li>
-      <li>Precision Data Cleaning</li>
-      <li>Literature Synthesis</li>
-      <li>Reproducible Workflows</li>
-      <li>Process Documentation</li>
-    </ul>
-  </div>
-</div>
+      <div class="skills-container">
+        <!-- Column 1: Languages -->
+        <div class="skills-column">
+          <h3>Programming</h3>
+          <ul>
+            <li>Stata</li>
+            <li>Python</li>
+            <li>LaTeX </li>
+            <li>R</li>
+            <li>HTML/CSS</li>
+          </ul>
+        </div>
+        
+        <!-- Column 2: Methods -->
+        <div class="skills-column">
+          <h3>Methods</h3>
+          <ul>
+            <li>Causal Inference (DiD, RDD, IV)</li>
+            <li>Machine Learning</li>
+            <li>Spatial Econometrics</li>
+            <li>Bayesian Statistics</li>
+          </ul>
+        </div>
+        
+        <!-- Column 3: Tools -->
+        <div class="skills-column">
+          <h3>Tools</h3>
+          <ul>
+            <li>Git/GitHub</li>
+            <li>RStudio (.r, .rmd)</li>
+            <li>Jupyter Notebook</li>
+            <li>GIS (ArcGIS, QGIS)</li>
+            <li>Overleaf</li>
+            <li>VS Code</li>
+          </ul>
+        </div>
+        
+        <!-- Column 4: Research Skills -->
+        <div class="skills-column">
+          <h3>Research Competencies</h3>
+          <ul>
+            <li>Technical Documentation</li>
+            <li>Data Cleaning</li>
+            <li>Literature Synthesis</li>
+            <li>Reproducible Workflows</li>
+            <li>Process Documentation</li>
+          </ul>
+        </div>
+      </div>
 
       <h2>Presentations</h2>
       <div class="presentation-item">
@@ -344,44 +552,69 @@
     <section id="cv">
       <h2>Curriculum Vitae</h2>
       <p>Last updated: June 2025</p>
-      <a class="download-link" href="cv.pdf" target="_blank">Download Full CV (PDF)</a>
+      <a class="download-link" href="cv.pdf" target="_blank" rel="noopener">Download Full CV (PDF)</a>
       
       <div class="cv-container">
         <iframe class="cv-frame" src="cv.pdf" title="John Martin's Curriculum Vitae"></iframe>
       </div>
+      <div class="pdf-fallback">
+        <p>Having trouble viewing the PDF? <a href="cv.pdf" download>Download it instead</a>.</p>
+      </div>
     </section>
 
-<section id="teaching">
-  <h2>Teaching Experience</h2>
-  
-  <div class="teaching-item">
-    <h3>University of Missouri</h3>
-    <ul class="teaching-list">
-      <li>
-        <strong>Peer Learning Assistant - Principles of Macroeconomics (ECONOM 1014)</strong>
-        <div class="teaching-details">Fall 2023-Spring 2025 | Attended lectures and answered questions, graded discussion posts, held office hours, and proctored exams</div>
-      </li>
-      <li>
-        <strong>Freelance Mathematics Tutor - Courses ranging from Algebra II to Real Analysis</strong>
-        <div class="teaching-details">Fall 2021-Spring 2025 | Tutored over 15 students on coursework and ACT prep</div>
-      </li>
-    </ul>
-  </div>
+    <section id="teaching">
+      <h2>Teaching Experience</h2>
+      
+      <div class="teaching-item">
+        <h3>University of Missouri</h3>
+        <ul class="teaching-list">
+          <li>
+            <strong>Peer Learning Assistant - Principles of Macroeconomics (ECONOM 1014)</strong>
+            <div class="teaching-details">
+              <strong>Fall 2023-Spring 2025</strong><br>
+              • Attended lectures and answered student questions during class<br>
+              • Graded discussion posts and provided detailed feedback<br>
+              • Held weekly office hours to assist students with coursework<br>
+              • Proctored exams and assisted with grading
+            </div>
+          </li>
+          <li>
+            <strong>Freelance Mathematics Tutor</strong>
+            <div class="teaching-details">
+              <strong>Fall 2021-Spring 2025</strong><br>
+              • Tutored over 15 students in courses ranging from Algebra II to Real Analysis<br>
+              • Developed customized lesson plans based on individual student needs<br>
+              • Provided ACT/SAT math preparation with proven score improvement results<br>
+              • Implemented active learning techniques to enhance conceptual understanding
+            </div>
+          </li>
+        </ul>
+      </div>
 
-  <div class="teaching-item">
-    <h3>Workshops</h3>
-    <ul class="teaching-list">
-      <li>
-        <strong>The Don'ts and Do's of Data Visualization</strong>
-        <div class="teaching-details">Workshop on Data Visualization to Non-Data Science Researchers (December 2024)</div>
-      </li>
-    </ul>
-  </div>
-</section>
+      <div class="teaching-item">
+        <h3>Workshops & Training</h3>
+        <ul class="teaching-list">
+          <li>
+            <strong>The Don'ts and Do's of Data Visualization</strong>
+            <div class="teaching-details">
+              <strong>Workshop for Non-Data Science Researchers | December 2024</strong><br>
+              • Covered principles of effective data visualization<br>
+              • Demonstrated common pitfalls and best practices<br>
+              • Hands-on exercises with real-world datasets<br>
+              • Received excellent feedback from participants
+            </div>
+          </li>
+          <li>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
 
-<footer style="text-align: center; padding: 1.5rem; background: #f8f9fa; margin-top: 2rem;">
-  <p>&copy; 2025 John F. Martin</p>
-</footer>
+  <footer>
+    <p>&copy; 2025 John F. Martin | Mizzou Economics</p>
+    <p><a href="mailto:martin.john105@gmail.com">Contact Me</a> | <a href="https://github.com/jfmt3v" target="_blank" rel="noopener">GitHub</a> | <a href="https://www.linkedin.com/in/john-f-martin85" target="_blank" rel="noopener">LinkedIn</a></p>
+  </footer>
 
   <script>
     function showSection(id) {
@@ -389,7 +622,7 @@
       document.querySelectorAll('nav a').forEach(link => {
         link.classList.remove('active');
       });
-      document.querySelector(`nav a[href="#"][onclick="showSection('${id}')"]`).classList.add('active');
+      document.querySelector(`nav a[href="#${id}"]`).classList.add('active');
       
       // Update active section
       document.querySelectorAll('section').forEach(sec => {
@@ -397,9 +630,46 @@
       });
       document.getElementById(id).classList.add('active');
       
-      // Scroll to top
-      window.scrollTo(0, 0);
+      // Check for PDF fallback
+      if(id === 'cv') {
+        checkPDFFallback();
+      }
     }
+    
+    function checkPDFFallback() {
+      const iframe = document.querySelector('.cv-frame');
+      const fallback = document.querySelector('.pdf-fallback');
+      
+      // Check if iframe loaded properly
+      if(iframe && iframe.contentWindow && iframe.contentWindow.document) {
+        try {
+          // If we can access the content, hide fallback
+          if(iframe.contentWindow.document.body.children.length > 0) {
+            fallback.style.display = 'none';
+          } else {
+            fallback.style.display = 'block';
+          }
+        } catch(e) {
+          // Cross-origin error means PDF is loading
+          fallback.style.display = 'none';
+        }
+      } else {
+        fallback.style.display = 'block';
+      }
+    }
+    
+    // Check for hash on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      if(window.location.hash) {
+        const sectionId = window.location.hash.substring(1);
+        showSection(sectionId);
+      }
+      
+      // Check PDF on initial load if on CV page
+      if(window.location.hash === '#cv') {
+        setTimeout(checkPDFFallback, 1000); // Wait a second for PDF to load
+      }
+    });
   </script>
 </body>
 </html>
