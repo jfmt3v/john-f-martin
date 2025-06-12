@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -299,6 +299,35 @@
       color: var(--text-light);
       font-size: 0.95rem;
       margin-top: 0.5rem;
+    }
+
+    .resource-links {
+      margin-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .resource-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.8rem;
+      background: #f0f4f8;
+      border-radius: 4px;
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    .resource-link:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    .icon {
+      fill: currentColor;
     }
     
     .pub-status {
