@@ -1,4 +1,594 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="John F. Martin — predoctoral research assistant in economics. Applied microeconomics, health and public economics, causal inference.">
+  <meta name="author" content="John F. Martin">
+  <title>John F. Martin</title>
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Source+Serif+Pro:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1f3a5f;
+      --secondary: #34495e;
+      --accent: #2d6a9f;
+      --accent-soft: #eaf1f8;
+      --text: #2a2a2a;
+      --text-light: #555;
+      --border: #e2e6ea;
+      --light: #f7f8fa;
+      --shadow: 0 1px 3px rgba(0,0,0,0.06);
+      --radius: 4px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.65;
+      color: var(--text);
+      background: white;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 2.5rem 1.5rem 1.5rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 0.25rem;
+      font-family: 'Source Serif Pro', Georgia, serif;
+      font-weight: 700;
+      font-size: 2.1rem;
+      letter-spacing: 0.5px;
+    }
+
+    header .subtitle {
+      margin: 0;
+      font-weight: 400;
+      font-size: 1rem;
+      opacity: 0.85;
+    }
+
+    nav {
+      background: var(--primary);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    }
+
+    nav a {
+      color: white;
+      padding: 0.85rem 1.5rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.08);
+      text-decoration: none;
+      border-bottom-color: var(--accent);
+    }
+
+    main {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    section {
+      padding: 2rem 0 1rem;
+      scroll-margin-top: 60px;
+    }
+
+    section + section { border-top: 1px solid var(--border); }
+
+    h2 {
+      font-family: 'Source Serif Pro', Georgia, serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 0 0 1.25rem;
+    }
+
+    h3 {
+      font-family: 'Source Serif Pro', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    p { margin: 0 0 1rem; }
+
+    .home-content {
+      display: flex;
+      gap: 2.5rem;
+      align-items: flex-start;
+      margin-top: 0.5rem;
+    }
+
+    .about-text { flex: 1; }
+    .about-text > *:first-child { margin-top: 0; }
+
+    img.headshot {
+      max-width: 200px;
+      border-radius: 50%;
+      box-shadow: var(--shadow);
+      flex-shrink: 0;
+    }
+
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.25rem 0 0;
+    }
+
+    .contact-list li {
+      margin: 0.3rem 0;
+      font-size: 0.95rem;
+    }
+
+    .contact-list strong {
+      display: inline-block;
+      min-width: 80px;
+      color: var(--text-light);
+      font-weight: 700;
+    }
+
+    .featured-paper {
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    .featured-paper p { margin: 0 0 0.6rem; }
+    .featured-paper p:last-child { margin-bottom: 0; }
+
+    .download-link {
+      display: inline-block;
+      padding: 0.4rem 0.85rem;
+      background: var(--primary);
+      color: white;
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .download-link:hover {
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+    }
+
+    .paper {
+      margin: 1rem 0;
+      padding: 1rem 1.2rem;
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .paper summary {
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--primary);
+      list-style: none;
+      outline: none;
+    }
+
+    .paper summary::-webkit-details-marker { display: none; }
+
+    .paper summary::before {
+      content: '▸ ';
+      color: var(--accent);
+    }
+
+    .paper[open] summary::before { content: '▾ '; }
+
+    .paper-meta {
+      display: block;
+      margin-top: 0.4rem;
+      font-weight: 400;
+      font-size: 0.88rem;
+      color: var(--text-light);
+    }
+
+    .paper-body {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+
+    .paper-body p { margin-bottom: 0.5rem; }
+
+    .pub-status {
+      display: inline-block;
+      padding: 0.1rem 0.5rem;
+      border-radius: 3px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+    }
+
+    .pub-status.working { background: #b07a1a; color: white; }
+    .pub-status.in-progress { background: #6c757d; color: white; }
+    .pub-status.published { background: #2a7a47; color: white; }
+    .pub-status.submitted { background: #2563a3; color: white; }
+
+    .wip-list, .presentation-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .wip-list li, .presentation-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .wip-list li:last-child, .presentation-list li:last-child { border-bottom: none; }
+
+    .presentation-list .meta {
+      display: block;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-top: 0.15rem;
+    }
+
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .skills-column {
+      background: var(--light);
+      padding: 1rem 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .skills-column h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1rem;
+    }
+
+    .skills-column ul {
+      padding-left: 1.1rem;
+      margin: 0;
+      font-size: 0.92rem;
+    }
+
+    .skills-column li { margin-bottom: 0.2rem; }
+
+    .cv-meta {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .cv-container {
+      margin-top: 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .cv-frame {
+      width: 100%;
+      height: 720px;
+      border: none;
+      display: block;
+    }
+
+    .teaching-block { margin: 1.5rem 0; }
+
+    .teaching-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .teaching-list > li {
+      padding: 0.5rem 0 0.5rem 1rem;
+      border-left: 2px solid var(--accent);
+      margin-bottom: 1.2rem;
+    }
+
+    .teaching-details {
+      margin-top: 0.3rem;
+      color: var(--text-light);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .resource-links {
+      margin-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .resource-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.7rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      color: var(--primary);
+      font-size: 0.85rem;
+    }
+
+    .resource-link:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      text-decoration: none;
+    }
+
+    .icon { fill: currentColor; }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--primary);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.85rem;
+    }
+
+    footer a { color: rgba(255,255,255,0.9); }
+    footer a:hover { color: white; }
+
+    @media (max-width: 720px) {
+      header h1 { font-size: 1.7rem; }
+      .home-content {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 1.5rem;
+      }
+      img.headshot { max-width: 160px; }
+      .cv-frame { height: 540px; }
+      nav a { padding: 0.7rem 0.9rem; font-size: 0.88rem; }
+      main { padding: 1rem 1rem 3rem; }
+    }
+
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>John F. Martin</h1>
+    <p class="subtitle">Predoctoral Research Assistant · Applied Microeconomics</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#cv">CV</a>
+    <a href="#teaching">Teaching</a>
+  </nav>
+
+  <main>
+    <section id="about">
+      <div class="home-content">
+        <div class="about-text">
+          <h2>About</h2>
+          <p>
+            I am a predoctoral research assistant working on projects that examine how
+            historical infrastructure and policies — railroads, highways, and redlining —
+            shape contemporary economic outcomes. My research interests are in applied
+            microeconomics, with a focus on health economics, public economics, and labor
+            markets, drawing on causal inference methods to evaluate policy.
+          </p>
+          <p>
+            I hold B.S. degrees in Economics, Mathematics, and Statistics from the
+            University of Missouri, and I plan to pursue a Ph.D. in economics.
+          </p>
+
+          <div class="featured-paper">
+            <p>
+              <strong>Featured paper:</strong>
+              <em>The Effects of Medicaid Expansion on Uninsured Rates.</em>
+              A staggered difference-in-differences design estimating coverage and
+              emergency-department payer-mix responses to state-level expansion decisions.
+            </p>
+            <a href="medicaid_expansion.pdf" class="download-link" target="_blank" rel="noopener">Read paper (PDF)</a>
+          </div>
+
+          <h3>Contact</h3>
+          <ul class="contact-list">
+            <li><strong>Email</strong> <a href="mailto:martin.john105@gmail.com">martin.john105@gmail.com</a></li>
+            <li><strong>GitHub</strong> <a href="https://github.com/jfmt3v" target="_blank" rel="noopener">jfmt3v</a></li>
+            <li><strong>LinkedIn</strong> <a href="https://www.linkedin.com/in/john-f-martin85" target="_blank" rel="noopener">john-f-martin85</a></li>
+            <li><strong>ORCID</strong> <a href="https://orcid.org/0009-0006-4501-1338" target="_blank" rel="noopener">0009-0006-4501-1338</a></li>
+          </ul>
+        </div>
+        <img src="headshot.jpg" alt="John F. Martin" class="headshot">
+      </div>
+    </section>
+
+    <section id="research">
+      <h2>Research</h2>
+
+      <h3>Fields</h3>
+      <ul>
+        <li>Health Economics — insurance markets, healthcare access, Medicaid/Medicare</li>
+        <li>Public Economics — safety net programs, taxation, policy evaluation</li>
+        <li>Labor Economics — wage determination, employment, human capital</li>
+        <li>Spatial Economics — place-based policies, urban/rural disparities</li>
+        <li>Causal Inference — DiD, RDD, IV</li>
+      </ul>
+
+      <h3>Working Papers</h3>
+      <details class="paper">
+        <summary>
+          The Effects of Medicaid Expansion on Uninsured Rates
+          <span class="pub-status working">Working Paper</span>
+          <span class="paper-meta">
+            [<a href="medicaid_expansion.pdf" target="_blank" rel="noopener">PDF</a>]
+            [<a href="https://github.com/jfmt3v/john-f-martin/blob/main/CodingSample.do" target="_blank" rel="noopener">Code</a>]
+            &nbsp;·&nbsp; JEL: I13, I18, H75
+          </span>
+        </summary>
+        <div class="paper-body">
+          <p><strong>Abstract.</strong> Access to healthcare is an integral factor in household financial decision-making. Medicaid expansion, legislation that each state may choose to opt into, attempts to alleviate this household burden by expanding guaranteed medical coverage to all citizens in a state below 138% of the Federal Poverty Level (FPL). I exploit within- and across-state variation through a staggered difference-in-differences framework comparing outcomes in expansion versus non-expansion states. Results indicate that Medicaid expansion causes a 34.9% decrease in the uninsured rate and a 2.5% decrease in private health insurance enrollment. While total emergency department visits remain unchanged, visits by Medicaid payers increase by 43.5% while self-pay/no-charge visits decrease by 56.5%, suggesting a shift in financial burden from households to Medicaid programs. These findings have implications for the design of healthcare safety net programs and state-level policy decisions regarding Medicaid expansion.</p>
+        </div>
+      </details>
+
+      <h3>Work in Progress</h3>
+      <ul class="wip-list">
+        <li>
+          <em>Historical Transportation Infrastructure and Modern Economic Mobility</em>
+          (with Goncalves, Street, and Weisburst)
+          <span class="pub-status in-progress">Data Analysis</span>
+        </li>
+      </ul>
+
+      <h3>Technical Skills</h3>
+      <div class="skills-container">
+        <div class="skills-column">
+          <h3>Programming</h3>
+          <ul>
+            <li>Stata</li>
+            <li>R</li>
+            <li>Python</li>
+            <li>LaTeX</li>
+          </ul>
+        </div>
+        <div class="skills-column">
+          <h3>Methods</h3>
+          <ul>
+            <li>Causal Inference</li>
+            <li>Panel Data</li>
+            <li>Spatial Econometrics</li>
+          </ul>
+        </div>
+        <div class="skills-column">
+          <h3>Tools</h3>
+          <ul>
+            <li>Git / GitHub</li>
+            <li>GIS (ArcGIS, QGIS)</li>
+            <li>Jupyter, RStudio</li>
+            <li>Overleaf</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Presentations</h3>
+      <ul class="presentation-list">
+        <li>
+          <strong>University of Missouri Economics Alumni Board</strong> — Columbia, MO
+          <span class="meta">November 2025 · Selected to present undergraduate research to alumni</span>
+        </li>
+        <li>
+          <strong>ASA DataFest</strong> — Columbia, MO
+          <span class="meta">April 2025 · Best Statistical Analysis (Runner-Up)</span>
+        </li>
+        <li>
+          <strong>Midwest Economics Association Annual Conference</strong> — Kansas City, MO
+          <span class="meta">March 2025 · "The Effects of Medicaid Expansion on Uninsured Rates"</span>
+        </li>
+        <li>
+          <strong>TRIO McNair Scholars Conference</strong> — Columbia, MO
+          <span class="meta">May 2024 · Poster presentation</span>
+        </li>
+      </ul>
+    </section>
+
+    <section id="cv">
+      <h2>Curriculum Vitae</h2>
+      <p class="cv-meta">
+        Last updated June 2025 ·
+        <a href="cv.pdf" target="_blank" rel="noopener">Open in new tab</a> ·
+        <a href="cv.pdf" download>Download PDF</a>
+      </p>
+      <div class="cv-container">
+        <iframe class="cv-frame" src="cv.pdf" title="John F. Martin — Curriculum Vitae"></iframe>
+      </div>
+    </section>
+
+    <section id="teaching">
+      <h2>Teaching</h2>
+
+      <div class="teaching-block">
+        <h3>University of Missouri</h3>
+        <ul class="teaching-list">
+          <li>
+            <strong>Peer Learning Assistant — Principles of Macroeconomics (ECONOM 1014)</strong>
+            <div class="teaching-details">
+              Fall 2023 – Spring 2025. Attended lectures and answered student questions in
+              class, graded discussion posts, held weekly office hours, and assisted with
+              exam grading.
+            </div>
+          </li>
+          <li>
+            <strong>Mathematics Tutor (freelance)</strong>
+            <div class="teaching-details">
+              Fall 2021 – Spring 2025. Tutored 15+ students in courses ranging from
+              Algebra II through Real Analysis, plus ACT/SAT math preparation.
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="teaching-block">
+        <h3>Workshops</h3>
+        <ul class="teaching-list">
+          <li>
+            <strong>The Do's and Don'ts of Data Visualization</strong>
+            <div class="teaching-details">
+              December 2024. Workshop for non-data-science researchers on principles of
+              effective visualization and common pitfalls.
+            </div>
+            <div class="resource-links">
+              <a href="The_Donts_&_Does_of_Data_Visualization.pdf" target="_blank" rel="noopener" class="resource-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/><path d="M14 2v6h6"/></svg>
+                Slides (PDF)
+              </a>
+              <a href="https://github.com/jfmt3v/data-viz-workshop" target="_blank" rel="noopener" class="resource-link">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14"><path d="M12 0c-6.6 0-12 5.4-12 12 0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2.9-.3 2-.3 3-.3s2.1 0 3 .3c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.9 5.6-5.5 5.9.5.4.9 1.5.9 2.8v3.3c0 .3.2.7.8.6C20.6 21.8 24 17.3 24 12c0-6.6-5.4-12-12-12z"/></svg>
+                Repository
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 John F. Martin · <a href="mailto:martin.john105@gmail.com">martin.john105@gmail.com</a></p>
+  </footer>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -709,4 +1299,4 @@
     });
   </script>
 </body>
-</html>
+</html> -->
