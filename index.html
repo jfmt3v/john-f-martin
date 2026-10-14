@@ -211,6 +211,62 @@
 
     .paper-body p { margin-bottom: 0.5rem; }
 
+    .paper-featured {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .paper-text { flex: 1; min-width: 0; }
+
+    .paper-title {
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.4;
+    }
+
+    .abstract { margin-top: 0.75rem; font-size: 0.95rem; }
+
+    .abstract summary {
+      cursor: pointer;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.9rem;
+      list-style: none;
+    }
+
+    .abstract summary::-webkit-details-marker { display: none; }
+    .abstract summary::before { content: '▸ '; }
+    .abstract[open] summary::before { content: '▾ '; }
+    .abstract p { margin: 0.6rem 0 0; }
+
+    .paper-figure {
+      flex: 0 0 260px;
+      display: block;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.4rem;
+      transition: box-shadow 0.15s ease, transform 0.15s ease;
+    }
+
+    .paper-figure:hover {
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      transform: translateY(-1px);
+    }
+
+    .paper-figure img { width: 100%; height: auto; display: block; }
+
+    .figure-caption {
+      display: block;
+      margin-top: 0.3rem;
+      font-size: 0.78rem;
+      color: var(--text-light);
+      text-align: center;
+      line-height: 1.35;
+    }
+
     .wip-list, .presentation-list {
       list-style: none;
       padding: 0;
@@ -328,6 +384,8 @@
       .cv-frame { height: 540px; }
       nav a { padding: 0.7rem 0.9rem; font-size: 0.88rem; }
       main { padding: 1rem 1rem 3rem; }
+      .paper-featured { flex-direction: column-reverse; }
+      .paper-figure { flex-basis: auto; width: 100%; max-width: 420px; align-self: center; }
     }
 
     html { scroll-behavior: smooth; }
@@ -393,19 +451,24 @@
       </ul>
 
       <h3>Working Papers</h3>
-      <details class="paper">
-        <summary>
-          The Effects of Medicaid Expansion on Uninsured Rates
+      <div class="paper paper-featured">
+        <div class="paper-text">
+          <a class="paper-title" href="medicaid_expansion.pdf" target="_blank" rel="noopener">Effects of Medicaid Expansion on Insurance Status, Emergency Department Payers, and Rural Hospital Finances</a>
           <span class="paper-meta">
-            [<a href="medicaid_expansion.pdf" target="_blank" rel="noopener">PDF</a>]
-            [<a href="https://github.com/jfmt3v/john-f-martin/blob/main/CodingSample.do" target="_blank" rel="noopener">Code</a>]
+            [<a href="medicaid_expansion.pdf" target="_blank" rel="noopener">Paper</a>]
+            [<a href="medicaid_expansion_appendix.pdf" target="_blank" rel="noopener">Robustness Appendix</a>]
             &nbsp;·&nbsp; JEL: I13, I18, H75
           </span>
-        </summary>
-        <div class="paper-body">
-          <p><strong>Abstract.</strong> Access to healthcare is an integral factor in household financial decision-making. Medicaid expansion, legislation that each state may choose to opt into, attempts to alleviate this household burden by expanding guaranteed medical coverage to all citizens in a state below 138% of the Federal Poverty Level (FPL). I exploit within- and across-state variation through a staggered difference-in-differences framework comparing outcomes in expansion versus non-expansion states. Results indicate that Medicaid expansion causes a 34.9% decrease in the uninsured rate and a 2.5% decrease in private health insurance enrollment. While total emergency department visits remain unchanged, visits by Medicaid payers increase by 43.5% while self-pay/no-charge visits decrease by 56.5%, suggesting a shift in financial burden from households to Medicaid programs. These findings have implications for the design of healthcare safety net programs and state-level policy decisions regarding Medicaid expansion.</p>
+          <details class="abstract">
+            <summary>Abstract</summary>
+            <p>The 2010 Patient Protection and Affordable Care Act (ACA) allowed states to expand Medicaid eligibility to nearly all low-income adults beginning in 2014. Its coverage gains are well-documented, but less is known about who pays for uninsured care and whether expansion removes this burden. I leverage the staggered timing of state adoption in a difference-in-differences design and follow expansion from insurance coverage to emergency department (ED) payers, and finally to the finances of rural hospitals. First, I find that expansion reduced the uninsured rate by roughly 26–29%, raised Medicaid enrollment by 32–42%, and reduced private insurance enrollment by about 3%. Second, total ED visits did not change detectably, but Medicaid-paid visits rose by more than half, while self-pay and no-charge visits fell by over 40%. Finally, I follow this payer shift to roughly 2,300 rural hospitals from 2011–2019. Expansion cut charity care for uninsured patients by more than half, and their bad debt by more than a quarter. This occurred with little change in inpatient volume. Part of this relief was offset by a rise in the unreimbursed cost of treating Medicaid patients, leaving net relief of about half a million dollars a year for the average hospital. In short, at the emergency department and rural hospitals, expansion changed how care is financed far more than the volume of care provided.</p>
+          </details>
         </div>
-      </details>
+        <a class="paper-figure" href="medicaid_expansion.pdf" target="_blank" rel="noopener" title="Open the paper (PDF)">
+          <img src="medicaid_uninsured_es.png" alt="Event-study estimates showing the log uninsured rate falling by about 0.4 in the years after a state adopts Medicaid expansion, with flat pre-trends" loading="lazy">
+          <span class="figure-caption">Event study: effect of expansion on the log uninsured rate</span>
+        </a>
+      </div>
 
       <h3>Work in Progress</h3>
       <ul class="wip-list">
